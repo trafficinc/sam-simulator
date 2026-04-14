@@ -9,6 +9,8 @@
   Right now the project runs in software with separate hub, pilot, and shield roles plus a browser UI, but it is also being built so pieces can eventually be split across
   separate hardware like laptops and Raspberry Pis.
 
+  > If you make cool configs for the sim, please share them!
+
   <img src="dashboard.png" width="1200" alt="Dashboard">
 
 # SAM Simulator Prototype
