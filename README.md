@@ -9,6 +9,8 @@
   Right now the project runs in software with separate hub, pilot, and shield roles plus a browser UI, but it is also being built so pieces can eventually be split across
   separate hardware like laptops and Raspberry Pis.
 
+  <img src="dashboard.png" width="1200" alt="Dashboard">
+
 # SAM Simulator Prototype
 
 Minimal FastAPI and browser prototype for a tactical SAM dashboard. The current build focuses on a clean WebSocket event contract, a simple 2D tactical renderer, and UI panels that can later host richer simulation state or a CesiumJS-backed map layer.
