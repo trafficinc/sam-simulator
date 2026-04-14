@@ -1,0 +1,770 @@
+:root {
+  --bg: #07141a;
+  --panel: #0d2027;
+  --panel-alt: #102a33;
+  --line: #1f4854;
+  --text: #dbe7e2;
+  --muted: #82a2a0;
+  --friendly: #6cc9a1;
+  --unknown: #efd78b;
+  --hostile: #ff7f6b;
+  --accent: #7ed1f5;
+  --warning: #ffb347;
+  --left-panel-width: 520px;
+  --right-panel-width: 760px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(30, 91, 113, 0.28), transparent 35%),
+    linear-gradient(180deg, #051015 0%, var(--bg) 100%);
+  color: var(--text);
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.support-grid,
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.video-panel {
+  min-width: 0;
+}
+
+.summary-bar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.summary-block,
+.panel,
+.subpanel {
+  background: rgba(13, 32, 39, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.summary-block {
+  padding: 12px 14px;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: var(--left-panel-width) var(--right-panel-width);
+  grid-template-areas:
+    "eoir tactical"
+    "radar tactical"
+    "weapons tactical"
+    "track track";
+  gap: 16px;
+  align-items: start;
+  justify-content: center;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: minmax(0, var(--left-panel-width)) minmax(0, var(--right-panel-width));
+  gap: 16px;
+  align-items: start;
+  width: calc(var(--left-panel-width) + var(--right-panel-width) + 16px);
+  max-width: 100%;
+  margin: 16px auto 0;
+}
+
+.eoir-panel {
+  grid-area: eoir;
+  min-width: 0;
+}
+
+.tactical-panel {
+  grid-area: tactical;
+  min-width: 0;
+  width: var(--right-panel-width);
+}
+
+.radar-panel {
+  grid-area: radar;
+  min-width: 0;
+}
+
+.weapons-panel {
+  grid-area: weapons;
+  min-width: 0;
+}
+
+.track-panel {
+  grid-area: track;
+  min-width: 0;
+  width: calc(var(--left-panel-width) + var(--right-panel-width) + 16px);
+}
+
+.event-panel {
+  grid-area: event;
+  min-width: 0;
+  width: 100%;
+}
+
+.status-panel {
+  grid-area: status;
+  min-width: 0;
+  width: 100%;
+}
+
+.support-grid > .event-panel {
+  grid-column: 1;
+}
+
+.support-grid > .status-panel {
+  grid-column: 2;
+}
+
+.panel {
+  padding: 14px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.connection-row,
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.status-pill,
+.filter-pill {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  color: var(--text);
+  background: rgba(16, 42, 51, 0.9);
+}
+
+.control-button {
+  border: 1px solid rgba(255, 127, 107, 0.55);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  color: var(--hostile);
+  background: rgba(51, 16, 16, 0.7);
+  cursor: pointer;
+}
+
+.control-button.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(15, 48, 60, 0.85);
+}
+
+.control-select {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  min-width: 210px;
+  font-size: 0.82rem;
+  color: var(--text);
+  background: rgba(16, 42, 51, 0.9);
+}
+
+.battle-log-select {
+  min-width: 160px;
+}
+
+.eoir-mode-select {
+  min-width: 130px;
+}
+
+.control-button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.map-helper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.tactical-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(16, 42, 51, 0.72);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 0.82rem;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(219, 231, 226, 0.3);
+}
+
+.legend-swatch.friendly {
+  background: var(--friendly);
+}
+
+.legend-swatch.unknown {
+  background: var(--unknown);
+}
+
+.legend-swatch.hostile {
+  background: var(--hostile);
+}
+
+.legend-swatch.selected {
+  background: #f8f1b4;
+}
+
+.legend-line {
+  width: 18px;
+  height: 0;
+  border-top: 2px solid var(--accent);
+}
+
+.legend-line.coverage {
+  border-top-color: rgba(133, 255, 246, 0.9);
+}
+
+.legend-line.confidence {
+  border-top-color: rgba(239, 215, 139, 0.9);
+}
+
+.legend-line.zone {
+  border-top-color: rgba(108, 201, 161, 0.8);
+}
+
+.map-helper-block {
+  min-width: 150px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(16, 42, 51, 0.72);
+}
+
+.weapons-activity {
+  display: grid;
+  gap: 8px;
+}
+
+.weapon-activity-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid rgba(31, 72, 84, 0.6);
+  border-radius: 10px;
+  background: rgba(16, 42, 51, 0.72);
+}
+
+.weapon-indicator {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(130, 162, 160, 0.55);
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+}
+
+.weapon-indicator.active {
+  background: var(--warning);
+  box-shadow: 0 0 8px rgba(255, 179, 71, 0.85);
+}
+
+.weapon-name {
+  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+  font-size: 0.82rem;
+}
+
+.weapon-meta {
+  color: var(--muted);
+  font-size: 0.76rem;
+  text-align: right;
+}
+
+.map-zoom-select {
+  min-width: 140px;
+}
+
+.status-pill.offline {
+  color: var(--hostile);
+}
+
+.status-pill.online {
+  color: var(--friendly);
+}
+
+.status-pill.emitting {
+  color: var(--warning);
+}
+
+.filter-pill {
+  cursor: pointer;
+}
+
+.filter-pill.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#tactical-canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background:
+    linear-gradient(rgba(126, 209, 245, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 209, 245, 0.06) 1px, transparent 1px),
+    radial-gradient(circle, rgba(126, 209, 245, 0.08) 0%, rgba(7, 20, 26, 0.2) 70%);
+  background-size: 12.5% 12.5%, 12.5% 12.5%, auto;
+}
+
+#eoir-canvas,
+#radar-profile-canvas {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+#eoir-canvas {
+  aspect-ratio: 13 / 9;
+  background:
+    linear-gradient(180deg, rgba(163, 199, 218, 0.14) 0%, rgba(18, 30, 36, 0.6) 48%, rgba(6, 10, 12, 1) 100%);
+}
+
+#radar-profile-canvas {
+  aspect-ratio: 13 / 8;
+  background:
+    linear-gradient(180deg, rgba(7, 20, 26, 0.96) 0%, rgba(5, 16, 20, 1) 100%);
+}
+
+#missile-feed-canvas,
+#ciws-feed-canvas {
+  display: block;
+  width: 100%;
+  height: 220px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(94, 132, 149, 0.24) 0%, rgba(18, 32, 42, 0.86) 55%, rgba(7, 12, 16, 1) 100%);
+}
+
+@media (max-width: 1320px) {
+  :root {
+    --left-panel-width: 460px;
+    --right-panel-width: 680px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "eoir"
+      "radar"
+      "weapons"
+      "tactical"
+      "track";
+  }
+
+  .support-grid,
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tactical-panel,
+  .track-panel {
+    width: 100%;
+  }
+}
+
+.table-wrap {
+  width: 100%;
+  overflow: auto;
+  max-height: 580px;
+}
+
+.track-detail {
+  margin-top: 12px;
+  border-top: 1px solid rgba(31, 72, 84, 0.7);
+  padding-top: 12px;
+}
+
+table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid rgba(31, 72, 84, 0.7);
+  font-size: 0.92rem;
+}
+
+.damage-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+th {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr.selected-row {
+  background: rgba(126, 209, 245, 0.08);
+}
+
+.iff-friendly {
+  color: var(--friendly);
+}
+
+.iff-unknown {
+  color: var(--unknown);
+}
+
+.iff-hostile {
+  color: var(--hostile);
+}
+
+.state-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(31, 72, 84, 0.8);
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+  background: rgba(16, 42, 51, 0.8);
+}
+
+.fusion-tripwire,
+.fusion-passive_track,
+.effector-jammer {
+  color: var(--unknown);
+}
+
+.fusion-ambush,
+.fusion-active_track,
+.effector-missile-battery-alpha {
+  color: var(--accent);
+}
+
+.threat-profile {
+  color: var(--accent);
+}
+
+.fusion-fire,
+.effector-ciws {
+  color: var(--hostile);
+}
+
+.fusion-silent,
+.effector-monitor {
+  color: var(--muted);
+}
+
+.status-neutralized {
+  color: var(--friendly);
+}
+
+.status-destroyed {
+  color: var(--hostile);
+}
+
+.status-aborting {
+  color: var(--warning);
+}
+
+.status-damaged {
+  color: var(--unknown);
+}
+
+.status-hit,
+.status-kill-assess,
+.status-engaging,
+.status-assigned {
+  color: var(--warning);
+}
+
+.status-miss,
+.status-reattack {
+  color: var(--hostile);
+}
+
+.status-success {
+  color: var(--friendly);
+}
+
+.status-failure,
+.status-timeout,
+.status-stopped {
+  color: var(--hostile);
+}
+
+.event-log {
+  display: grid;
+  gap: 8px;
+  max-height: 220px;
+  overflow: auto;
+  min-width: 0;
+}
+
+.battle-log-section {
+  margin-top: 12px;
+  border-top: 1px solid rgba(31, 72, 84, 0.7);
+  padding-top: 12px;
+}
+
+.subpanel-header {
+  margin-bottom: 10px;
+}
+
+.battle-log {
+  display: grid;
+  gap: 8px;
+  max-height: 320px;
+  overflow: auto;
+  min-width: 0;
+}
+
+.report-panel {
+  margin-top: 12px;
+  border-top: 1px solid rgba(31, 72, 84, 0.7);
+  padding-top: 12px;
+}
+
+.report-summary {
+  color: var(--text);
+  margin: 10px 0 14px;
+}
+
+.event-item {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(16, 42, 51, 0.85);
+  border: 1px solid rgba(31, 72, 84, 0.6);
+  overflow-wrap: anywhere;
+}
+
+.battle-log-item {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(10, 26, 32, 0.92);
+  border: 1px solid rgba(31, 72, 84, 0.6);
+  overflow-wrap: anywhere;
+}
+
+.event-item.warning {
+  border-color: rgba(255, 179, 71, 0.5);
+}
+
+.event-item.critical {
+  border-color: rgba(255, 127, 107, 0.5);
+}
+
+.battle-log-item.warning {
+  border-color: rgba(255, 179, 71, 0.5);
+}
+
+.battle-log-item.critical {
+  border-color: rgba(255, 127, 107, 0.5);
+}
+
+.event-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.76rem;
+  margin-bottom: 6px;
+}
+
+.stacked-panels {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.subpanel {
+  padding: 12px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metric-card {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(16, 42, 51, 0.75);
+  border: 1px solid rgba(31, 72, 84, 0.6);
+}
+
+.metric-card .metric-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.metric-card strong {
+  font-size: 1rem;
+}
+
+.detail-empty {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.detail-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.detail-card {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(16, 42, 51, 0.75);
+  border: 1px solid rgba(31, 72, 84, 0.6);
+}
+
+.detail-reasons {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(16, 42, 51, 0.6);
+  border: 1px solid rgba(31, 72, 84, 0.6);
+}
+
+.detail-reasons ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.detail-reasons li {
+  margin-bottom: 6px;
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+.report-summary {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.report-history {
+  margin-top: 12px;
+}
+
+.report-table {
+  min-width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .summary-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "eoir"
+      "radar"
+      "tactical"
+      "track";
+  }
+
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAM Simulator</title>
+    <link rel="stylesheet" href="/assets/styles.css?v=24" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="summary-bar">
+        <div class="summary-block">
+          <span class="label">Mode</span>
+          <strong id="mode-value">-</strong>
+        </div>
+        <div class="summary-block">
+          <span class="label">Tracks</span>
+          <strong id="track-count-value">0</strong>
+        </div>
+        <div class="summary-block">
+          <span class="label">Ammo</span>
+          <strong id="ammo-value">-</strong>
+        </div>
+        <div class="summary-block">
+          <span class="label">Sensors</span>
+          <strong id="sensor-value">-</strong>
+        </div>
+        <div class="summary-block">
+          <span class="label">Effector</span>
+          <strong id="effector-value">-</strong>
+        </div>
+        <div class="summary-block">
+          <span class="label">Scenario</span>
+          <strong id="scenario-value">RUNNING</strong>
+        </div>
+        <div class="summary-block">
+          <span class="label">Time</span>
+          <strong id="time-value">0 / 180 s</strong>
+        </div>
+      </header>
+
+      <main class="dashboard-grid">
+        <section class="panel eoir-panel">
+          <div class="panel-header">
+            <h1>EO/IR Sensor Feed</h1>
+            <div class="connection-row">
+              <select id="eoir-mode-select" class="control-select eoir-mode-select">
+                <option value="EO">EO</option>
+                <option value="IR_WHITE">IR White Hot</option>
+                <option value="IR_BLACK">IR Black Hot</option>
+              </select>
+              <span id="eoir-target-pill" class="status-pill">Target: None</span>
+            </div>
+          </div>
+          <canvas id="eoir-canvas" width="520" height="360"></canvas>
+        </section>
+
+        <section class="panel tactical-panel">
+          <div class="panel-header">
+            <h1>Global Tactical View</h1>
+            <div class="connection-row">
+              <select id="scenario-select" class="control-select"></select>
+              <select id="doctrine-select" class="control-select"></select>
+              <button id="reset-button" class="control-button">Reset</button>
+              <button id="reload-button" class="control-button">Reload Config</button>
+              <button id="pause-button" class="control-button">Pause</button>
+              <button id="step-button" class="control-button">Step</button>
+              <button id="stop-button" class="control-button">Stop</button>
+              <span id="connection-status" class="status-pill offline">Offline</span>
+              <span id="radar-pill" class="status-pill">Radar Silent</span>
+            </div>
+          </div>
+          <div class="filter-bar" id="filter-bar"></div>
+          <canvas id="tactical-canvas" width="700" height="700"></canvas>
+          <div class="map-helper">
+            <div class="map-helper-block">
+              <span class="label">Cursor</span>
+              <strong id="map-cursor-value">x 0 / y 0</strong>
+            </div>
+            <div class="map-helper-block">
+              <span class="label">Selected</span>
+              <strong id="map-selected-value">click map</strong>
+            </div>
+            <select id="zoom-select" class="control-select map-zoom-select">
+              <option value="AUTO">Auto Zoom</option>
+              <option value="10000">10 km</option>
+              <option value="2000">2 km</option>
+              <option value="500">500 m</option>
+            </select>
+            <button id="coverage-toggle-button" class="control-button">Coverage Rings</button>
+            <button id="confidence-toggle-button" class="control-button">Confidence Rings</button>
+            <button id="copy-coordinates-button" class="control-button">Copy XY</button>
+          </div>
+          <div class="tactical-legend" id="tactical-legend">
+            <span class="legend-item"><span class="legend-swatch friendly"></span>Friendly</span>
+            <span class="legend-item"><span class="legend-swatch unknown"></span>Unknown</span>
+            <span class="legend-item"><span class="legend-swatch hostile"></span>Hostile</span>
+            <span class="legend-item"><span class="legend-swatch selected"></span>Selected</span>
+            <span class="legend-item"><span class="legend-line coverage"></span>SAM Coverage</span>
+            <span class="legend-item"><span class="legend-line confidence"></span>Confidence Ring</span>
+            <span class="legend-item"><span class="legend-line zone"></span>Defended Zone</span>
+          </div>
+        </section>
+
+        <section class="panel radar-panel">
+          <div class="panel-header">
+            <h2>Radar / Elevation Profile</h2>
+            <div class="connection-row">
+              <span id="radar-profile-pill" class="status-pill">Track: None</span>
+            </div>
+          </div>
+          <canvas id="radar-profile-canvas" width="520" height="320"></canvas>
+        </section>
+
+        <section class="panel weapons-panel">
+          <div class="panel-header">
+            <h2>Weapons Activity</h2>
+          </div>
+          <div id="weapons-activity" class="weapons-activity"></div>
+        </section>
+
+        <section class="panel track-panel">
+          <div class="panel-header">
+            <h2>Track Table</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Type</th>
+                  <th>Range</th>
+                  <th>Speed</th>
+                  <th>Priority</th>
+                  <th>IFF</th>
+                  <th>Health</th>
+                  <th>Fusion</th>
+                  <th>Effector</th>
+                  <th>Status</th>
+                  <th>Engagement</th>
+                </tr>
+              </thead>
+              <tbody id="track-table-body"></tbody>
+            </table>
+          </div>
+          <div class="track-detail" id="track-detail"></div>
+        </section>
+
+      </main>
+
+      <section class="video-grid">
+        <div class="panel video-panel">
+          <div class="panel-header">
+            <h2>Missile Feed</h2>
+            <span id="missile-feed-status" class="status-pill">Standby</span>
+          </div>
+          <canvas id="missile-feed-canvas" width="520" height="220"></canvas>
+        </div>
+
+        <div class="panel video-panel">
+          <div class="panel-header">
+            <h2>CIWS Feed</h2>
+            <span id="ciws-feed-status" class="status-pill">Standby</span>
+          </div>
+          <canvas id="ciws-feed-canvas" width="520" height="220"></canvas>
+        </div>
+      </section>
+
+      <section class="support-grid">
+        <section class="panel event-panel">
+          <div class="panel-header">
+            <h2>Event Log</h2>
+            <div class="connection-row">
+              <button id="report-export-button" class="control-button">Export Report</button>
+              <button id="battle-log-export-button" class="control-button">Export Battle Log</button>
+            </div>
+          </div>
+          <div id="event-log" class="event-log"></div>
+          <div class="battle-log-section">
+            <div class="panel-header subpanel-header">
+              <h2>Battle Log</h2>
+              <div class="connection-row">
+                <select id="battle-log-category-filter" class="control-select battle-log-select"></select>
+                <select id="battle-log-track-filter" class="control-select battle-log-select"></select>
+              </div>
+            </div>
+            <div id="battle-log" class="battle-log"></div>
+          </div>
+          <div id="report-panel" class="report-panel"></div>
+        </section>
+
+        <section class="panel status-panel">
+          <div class="stacked-panels">
+            <div class="subpanel">
+              <h2>Defense Config</h2>
+              <div id="defense-config-status" class="metric-grid"></div>
+            </div>
+            <div class="subpanel">
+              <h2>CIWS Status</h2>
+              <div id="ciws-status" class="metric-grid"></div>
+            </div>
+            <div class="subpanel">
+              <h2>Passive Tracking</h2>
+              <div id="passive-status" class="metric-grid"></div>
+            </div>
+            <div class="subpanel">
+              <h2>SAM Status</h2>
+              <div id="sam-status" class="metric-grid"></div>
+            </div>
+            <div class="subpanel">
+              <h2>Defended Assets</h2>
+              <div id="zone-status" class="metric-grid"></div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <script type="module" src="/assets/app.js?v=24"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "name": "default_layered_raid",
+  "time_limit_s": 400,
+  "templates": [
+    {
+      "track_id": "T-001",
+      "type": "JET",
+      "iff": "HOSTILE",
+      "initial_range_m": 9200.0,
+      "altitude_m": 5200.0,
+      "speed_mps": 120.0,
+      "angle_offset_rad": 0.1,
+      "approach_rate_mps": 15.0,
+      "orbit_rate_rad": 0.04,
+      "heading_offset_deg": 20.0
+    },
+    {
+      "track_id": "T-005",
+      "type": "JET",
+      "iff": "HOSTILE",
+      "initial_range_m": 9400.0,
+      "altitude_m": 6100.0,
+      "speed_mps": 185.0,
+      "angle_offset_rad": 2.9,
+      "approach_rate_mps": 125.0,
+      "orbit_rate_rad": 0.06,
+      "heading_offset_deg": 10.0
+    },
+    {
+      "track_id": "T-006",
+      "type": "HELICOPTER",
+      "iff": "HOSTILE",
+      "initial_range_m": 8800.0,
+      "altitude_m": 1000.0,
+      "speed_mps": 70.0,
+      "angle_offset_rad": 3.5,
+      "approach_rate_mps": 20.0,
+      "orbit_rate_rad": 0.05,
+      "priority_bias" : 20,
+      "heading_offset_deg": 0.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "batteries": [
+    {
+      "id": "BTRY-A",
+      "name": "Battery A",
+      "position": { "x": -1136.0, "y": 3020.0 },
+      "max_range_m": 4500.0,
+      "ammo": 8,
+      "max_channels": 2,
+      "status": "READY"
+    },
+    {
+      "id": "BTRY-B",
+      "name": "Battery B",
+      "position": { "x": 2070.0, "y": -2740.0 },
+      "max_range_m": 4500.0,
+      "ammo": 8,
+      "max_channels": 2,
+      "status": "READY"
+    }
+  ]
+}

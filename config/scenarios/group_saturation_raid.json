@@ -1,0 +1,114 @@
+{
+  "name": "group_saturation_raid",
+  "time_limit_s": 240,
+  "templates": [
+    {
+      "track_id": "G-101",
+      "type": "JET",
+      "iff": "HOSTILE",
+      "initial_range_m": 9800.0,
+      "altitude_m": 6200.0,
+      "speed_mps": 210.0,
+      "angle_offset_rad": 0.15,
+      "approach_rate_mps": 165.0,
+      "orbit_rate_rad": 0.05,
+      "heading_offset_deg": 20.0
+    },
+    {
+      "track_id": "G-102",
+      "type": "JET",
+      "iff": "HOSTILE",
+      "initial_range_m": 9600.0,
+      "altitude_m": 5900.0,
+      "speed_mps": 205.0,
+      "angle_offset_rad": 0.32,
+      "approach_rate_mps": 160.0,
+      "orbit_rate_rad": 0.05,
+      "heading_offset_deg": 25.0
+    },
+    {
+      "track_id": "G-103",
+      "type": "JET",
+      "iff": "HOSTILE",
+      "initial_range_m": 9400.0,
+      "altitude_m": 5700.0,
+      "speed_mps": 195.0,
+      "angle_offset_rad": 0.48,
+      "approach_rate_mps": 150.0,
+      "orbit_rate_rad": 0.05,
+      "heading_offset_deg": 18.0
+    },
+    {
+      "track_id": "G-201",
+      "type": "DRONE",
+      "iff": "HOSTILE",
+      "initial_range_m": 7200.0,
+      "altitude_m": 700.0,
+      "speed_mps": 85.0,
+      "angle_offset_rad": 1.1,
+      "approach_rate_mps": 120.0,
+      "orbit_rate_rad": 0.1,
+      "heading_offset_deg": 5.0
+    },
+    {
+      "track_id": "G-202",
+      "type": "DRONE",
+      "iff": "HOSTILE",
+      "initial_range_m": 7000.0,
+      "altitude_m": 650.0,
+      "speed_mps": 82.0,
+      "angle_offset_rad": 1.24,
+      "approach_rate_mps": 118.0,
+      "orbit_rate_rad": 0.1,
+      "heading_offset_deg": 8.0
+    },
+    {
+      "track_id": "G-203",
+      "type": "DRONE",
+      "iff": "HOSTILE",
+      "initial_range_m": 6800.0,
+      "altitude_m": 600.0,
+      "speed_mps": 80.0,
+      "angle_offset_rad": 1.38,
+      "approach_rate_mps": 116.0,
+      "orbit_rate_rad": 0.1,
+      "heading_offset_deg": 12.0
+    },
+    {
+      "track_id": "G-301",
+      "type": "CRUISE_MISSILE",
+      "iff": "HOSTILE",
+      "initial_range_m": 6100.0,
+      "altitude_m": 220.0,
+      "speed_mps": 245.0,
+      "angle_offset_rad": 2.0,
+      "approach_rate_mps": 230.0,
+      "orbit_rate_rad": 0.04,
+      "heading_offset_deg": 38.0
+    },
+    {
+      "track_id": "G-302",
+      "type": "BALLISTIC_MISSILE",
+      "iff": "HOSTILE",
+      "initial_range_m": 5900.0,
+      "altitude_m": 14000.0,
+      "speed_mps": 520.0,
+      "angle_offset_rad": 2.12,
+      "approach_rate_mps": 225.0,
+      "orbit_rate_rad": 0.04,
+      "heading_offset_deg": 42.0
+    },
+    {
+      "track_id": "G-401",
+      "type": "HELICOPTER",
+      "iff": "FRIEND",
+      "initial_range_m": 8600.0,
+      "altitude_m": 950.0,
+      "speed_mps": 70.0,
+      "angle_offset_rad": 3.4,
+      "approach_rate_mps": 15.0,
+      "orbit_rate_rad": 0.04,
+      "heading_offset_deg": 0.0
+    }
+  ]
+}

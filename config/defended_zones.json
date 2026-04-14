@@ -1,0 +1,31 @@
+{
+  "zones": [
+    {
+      "id": "ZONE-BASE",
+      "name": "Base",
+      "type": "BASE",
+      "position": { "x": 0.0, "y": 0.0 },
+      "radius_m": 700.0,
+      "priority": 100,
+      "health": 100
+    },
+    {
+      "id": "ZONE-AIRPORT",
+      "name": "Airport",
+      "type": "AIRPORT",
+      "position": { "x": 2200.0, "y": -1400.0 },
+      "radius_m": 850.0,
+      "priority": 85,
+      "health": 100
+    },
+    {
+      "id": "ZONE-CITY",
+      "name": "City",
+      "type": "CITY",
+      "position": { "x": -2600.0, "y": 1900.0 },
+      "radius_m": 1200.0,
+      "priority": 70,
+      "health": 100
+    }
+  ]
+}

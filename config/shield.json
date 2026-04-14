@@ -1,0 +1,13 @@
+{
+  "active_sensors": ["acoustic", "irst", "radar"],
+  "capacity": {
+    "missile_channels": 2,
+    "jammer_channels": 1,
+    "ciws_channels": 1
+  },
+  "doctrine": {
+    "high_priority": "SHOT_LOOK_SHOT",
+    "standard": "SINGLE_SHOT",
+    "hold_fire_below_score": 20
+  }
+}
