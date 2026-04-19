@@ -1,5 +1,5 @@
   With all the missiles, drones, and air defense systems constantly in the news lately, I got inspired, in a slightly weird way, to start designing my own air defense simulator.
-  What began as a “I wonder how hard it would be to build this” kind of idea turned into a hobby project that is way more entertaining than it probably should be. A Plus is that I learned quite a bit about them and learned new things is fun. Side note: Never worked in the defense industry either; not on or near any real life systems like this, I just used open source information.
+  What began as a “I wonder how hard it would be to build this” kind of idea turned into a hobby project that is way more entertaining than it probably should be. A Plus is that I learned quite a bit about them and learning new things can be fun. Side note: Never worked in the defense industry either; not on or near any real life systems like this, I just used open source information.
 
   This repo is my air-defense lab. The idea is to experiment with how a layered defense system might actually behave: spotting threats, building tracks, deciding what
   matters most, assigning weapons, protecting zones, and showing it all in a tactical dashboard. It is not trying to be a finished military-grade simulator, just a
